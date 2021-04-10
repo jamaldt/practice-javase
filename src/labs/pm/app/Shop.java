@@ -17,6 +17,7 @@
 package labs.pm.app;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Comparator;
 import labs.pm.data.Product;
 import labs.pm.data.ProductManager;
@@ -66,7 +67,7 @@ public class Shop {
         p4 = pm.reviewProduct(p4, Rating.THREE_STAR, "comantario Cookie");
         p4 = pm.reviewProduct(p4, Rating.TWO_STAR, "comantario Cookie 1");
         p4 = pm.reviewProduct(p4, Rating.FOUR_STAR, "comantario Cookie 2");
-//        pm.printProductReport(p4);
+        pm.printProductReport(p4);
 
         Comparator<Product> ratingSorter = (p1, p5)
                 -> p5.getRating().ordinal() - p1.getRating().ordinal();
@@ -74,14 +75,20 @@ public class Shop {
         Comparator<Product> priceSorter = (p1, p5)
                 -> p5.getPrice().compareTo(p1.getPrice());
 
-        pm.printProduct(ratingSorter);
-        pm.printProduct(priceSorter);
+        pm.createProduct(106, "Chocolate", BigDecimal.valueOf(2.50), Rating.NOT_RATED, LocalDate.now().plusDays(3));
+        pm.reviewProduct(106, Rating.THREE_STAR, "Too sweet");
+        pm.reviewProduct(106, Rating.TWO_STAR, "Too sweet Cookie 1");
+        pm.reviewProduct(106, Rating.FOUR_STAR, "Too sweet Cookie 2");
+        pm.printProductReport(106);
+//        pm.printProduct(p -> p.getPrice().floatValue() < 2, (pp1, pp2) -> pp2.getRating().ordinal() - pp1.getRating().ordinal());
+//        pm.printProduct(ratingSorter);
+//        pm.printProduct(priceSorter);
+//
+//        pm.printProduct((p1, p5) -> p5.getRating().ordinal() - p1.getRating().ordinal());
+//        pm.printProduct((p1, p5) -> p5.getPrice().compareTo(p1.getPrice()));
 
-        pm.printProduct((p1, p5) -> p5.getRating().ordinal() - p1.getRating().ordinal());
-        pm.printProduct((p1, p5) -> p5.getPrice().compareTo(p1.getPrice()));
-
-        pm.printProduct(ratingSorter.thenComparing(priceSorter));
-        pm.printProduct(ratingSorter.thenComparing(priceSorter).reversed());
+//        pm.printProduct(ratingSorter.thenComparing(priceSorter));
+//        pm.printProduct(ratingSorter.thenComparing(priceSorter).reversed());
 //        p1 = pm.reviewProduct(p1, Rating.FOUR_STAR, "EXCELENTE ");
 //        pm.printProductReport();
 //        Product p2 = pm.createProduct(102, "Coffee", BigDecimal.valueOf(1.99), Rating.FOUR_STAR);
