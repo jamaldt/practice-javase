@@ -27,7 +27,7 @@ public enum Rating {
     THREE_STAR("\u2605\u2605\u2605\u2606\u2606"),
     FOUR_STAR("\u2605\u2605\u2605\u2605\u2606"),
     FIVE_STAR("\u2605\u2605\u2605\u2605\u2605");
-    
+
     private String stars;
 
     private Rating(String stars) {
@@ -37,6 +37,5 @@ public enum Rating {
     public String getStars() {
         return stars;
     }
-    
-    
+
 }

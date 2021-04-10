@@ -39,7 +39,7 @@ public class Shop {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        ProductManager pm = new ProductManager(Locale.US);
+        ProductManager pm = new ProductManager("en-GB");
         pm.createProduct(101, "tea", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
 
 //tambien se puede crear de esta manera.
@@ -52,7 +52,9 @@ public class Shop {
         pm.reviewProduct(101, Rating.THREE_STAR, "comantario 5");
         pm.printProductReport(101);
 
-        Product p2 = pm.createProduct(101, "coffe", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
+        pm.changeLocale("ru-RU");
+
+        Product p2 = pm.createProduct(102, "coffe", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         p2 = pm.reviewProduct(p2, Rating.THREE_STAR, "comantario coffe");
         p2 = pm.reviewProduct(p2, Rating.TWO_STAR, "comantario coffe1");
         p2 = pm.reviewProduct(p2, Rating.FOUR_STAR, "comantario coffe2");
