@@ -17,10 +17,7 @@
 package labs.pm.app;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Locale;
-import labs.pm.data.Drink;
-import labs.pm.data.Food;
+import java.util.Comparator;
 import labs.pm.data.Product;
 import labs.pm.data.ProductManager;
 import labs.pm.data.Rating;
@@ -43,35 +40,48 @@ public class Shop {
         pm.createProduct(101, "tea", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
 
 //tambien se puede crear de esta manera.
-        pm.printProductReport(101);
+//        pm.printProductReport(101);
         pm.reviewProduct(101, Rating.NOT_RATED, "comantario tea");
         pm.reviewProduct(101, Rating.TWO_STAR, "comantario tea1");
         pm.reviewProduct(101, Rating.FOUR_STAR, "comantario 2");
         pm.reviewProduct(101, Rating.FOUR_STAR, "comantario 3");
         pm.reviewProduct(101, Rating.FIVE_STAR, "comantario 4");
         pm.reviewProduct(101, Rating.THREE_STAR, "comantario 5");
-        pm.printProductReport(101);
+//        pm.printProductReport(101);
 
-        pm.changeLocale("ru-RU");
-
+        //pm.changeLocale("ru-RU");
         Product p2 = pm.createProduct(102, "coffe", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         p2 = pm.reviewProduct(p2, Rating.THREE_STAR, "comantario coffe");
         p2 = pm.reviewProduct(p2, Rating.TWO_STAR, "comantario coffe1");
         p2 = pm.reviewProduct(p2, Rating.FOUR_STAR, "comantario coffe2");
-        pm.printProductReport(p2);
+//        pm.printProductReport(p2);
 
         Product p3 = pm.createProduct(101, "Cake", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         p3 = pm.reviewProduct(p3, Rating.THREE_STAR, "comantario Cake");
         p3 = pm.reviewProduct(p3, Rating.TWO_STAR, "comantario Cake 1");
         p3 = pm.reviewProduct(p3, Rating.FOUR_STAR, "comantario Cake2");
-        pm.printProductReport(p3);
+//        pm.printProductReport(p3);
 
         Product p4 = pm.createProduct(101, "Cookie", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         p4 = pm.reviewProduct(p4, Rating.THREE_STAR, "comantario Cookie");
         p4 = pm.reviewProduct(p4, Rating.TWO_STAR, "comantario Cookie 1");
         p4 = pm.reviewProduct(p4, Rating.FOUR_STAR, "comantario Cookie 2");
-        pm.printProductReport(p4);
+//        pm.printProductReport(p4);
 
+        Comparator<Product> ratingSorter = (p1, p5)
+                -> p5.getRating().ordinal() - p1.getRating().ordinal();
+
+        Comparator<Product> priceSorter = (p1, p5)
+                -> p5.getPrice().compareTo(p1.getPrice());
+
+        pm.printProduct(ratingSorter);
+        pm.printProduct(priceSorter);
+
+        pm.printProduct((p1, p5) -> p5.getRating().ordinal() - p1.getRating().ordinal());
+        pm.printProduct((p1, p5) -> p5.getPrice().compareTo(p1.getPrice()));
+
+        pm.printProduct(ratingSorter.thenComparing(priceSorter));
+        pm.printProduct(ratingSorter.thenComparing(priceSorter).reversed());
 //        p1 = pm.reviewProduct(p1, Rating.FOUR_STAR, "EXCELENTE ");
 //        pm.printProductReport();
 //        Product p2 = pm.createProduct(102, "Coffee", BigDecimal.valueOf(1.99), Rating.FOUR_STAR);
