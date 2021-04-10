@@ -183,7 +183,7 @@ public class ProductManager {
         System.out.println(txt);
     }
 
-    public void printProduct(Predicate<Product> filter,Comparator<Product> sorter) {
+    public void printProduct(Predicate<Product> filter, Comparator<Product> sorter) {
 //        List<Product> productList = new ArrayList<>(products.keySet());
 //        productList.sort(sorter);
         StringBuilder txt = new StringBuilder();
@@ -197,6 +197,21 @@ public class ProductManager {
                 .filter(filter)
                 .forEach(p -> txt.append(formatter.formatProduct(p)).append("\n"));
         System.out.println(txt);
+    }
+
+    public Map<String, String> getDiscounts() {
+        return products.keySet()
+                .stream()
+                .collect(
+                        Collectors.groupingBy(
+                                product -> product.getRating().getStars(),
+                                Collectors.collectingAndThen(
+                                        Collectors.summingDouble(
+                                                product -> product.getDiscount().doubleValue()),
+                                        discount -> formatter.moneyFormat.format(discount))
+                        )
+                );
+
     }
 
     private static class ResourceFormatter {

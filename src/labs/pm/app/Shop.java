@@ -129,7 +129,7 @@ public class Shop {
 //        System.out.println(p7);
 //        System.out.println(p8);
 //        System.out.println(p9);
-//        
+        pm.getDiscounts().forEach((rating,discount)-> System.out.println(rating+"\t"+discount));     
     }
 
 }
