@@ -38,17 +38,24 @@ public class Shop {
         // TODO code application logic here
 
         ProductManager pm = new ProductManager("en-GB");
-        pm.createProduct(101, "tea", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
-
+//        pm.createProduct(101, "tea", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
+        pm.parseProduct("D,101,TEa,1.9,0,2019-09-19");
+//        pm.parseProduct("D,101,TEa,1.9,0");
 //tambien se puede crear de esta manera.
 //        pm.printProductReport(101);
-        pm.reviewProduct(101, Rating.NOT_RATED, "comantario tea");
-        pm.reviewProduct(101, Rating.TWO_STAR, "comantario tea1");
-        pm.reviewProduct(101, Rating.FOUR_STAR, "comantario 2");
-        pm.reviewProduct(101, Rating.FOUR_STAR, "comantario 3");
-        pm.reviewProduct(101, Rating.FIVE_STAR, "comantario 4");
-        pm.reviewProduct(101, Rating.THREE_STAR, "comantario 5");
+//        pm.reviewProduct(101, Rating.NOT_RATED, "comantario tea");
+//        pm.reviewProduct(101, Rating.TWO_STAR, "comantario tea1");
+//        pm.reviewProduct(101, Rating.FOUR_STAR, "comantario 2");
+//        pm.reviewProduct(101, Rating.FOUR_STAR, "comantario 3");
+//        pm.reviewProduct(101, Rating.FIVE_STAR, "comantario 4");
+//        pm.reviewProduct(101, Rating.THREE_STAR, "comantario 5");
 //        pm.printProductReport(101);
+        pm.parseReview("101,4,bueno muy bueno");
+        pm.parseReview("101,3,bueno muy bueno");
+        pm.parseReview("101,1,bueno muy bueno");
+        pm.parseReview("101,2,bueno muy bueno");
+        pm.parseReview("101,5,bueno muy bueno");
+        pm.printProductReport(101);
 
         //pm.changeLocale("ru-RU");
         Product p2 = pm.createProduct(102, "coffe", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
@@ -56,30 +63,31 @@ public class Shop {
         p2 = pm.reviewProduct(p2, Rating.TWO_STAR, "comantario coffe1");
         p2 = pm.reviewProduct(p2, Rating.FOUR_STAR, "comantario coffe2");
 //        pm.printProductReport(p2);
-
-        Product p3 = pm.createProduct(101, "Cake", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
-        p3 = pm.reviewProduct(p3, Rating.THREE_STAR, "comantario Cake");
-        p3 = pm.reviewProduct(p3, Rating.TWO_STAR, "comantario Cake 1");
-        p3 = pm.reviewProduct(p3, Rating.FOUR_STAR, "comantario Cake2");
-//        pm.printProductReport(p3);
+pm.parseProduct("F,103,cafe,1.9,0,2019-09-19");
+pm.printProductReport(103);
+//        Product p3 = pm.createProduct(103, "Cake", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
+//        p3 = pm.reviewProduct(p3, Rating.THREE_STAR, "comantario Cake");
+//        p3 = pm.reviewProduct(p3, Rating.TWO_STAR, "comantario Cake 1");
+//        p3 = pm.reviewProduct(p3, Rating.FOUR_STAR, "comantario Cake2");
+////        pm.printProductReport(p3);
 
         Product p4 = pm.createProduct(101, "Cookie", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         p4 = pm.reviewProduct(p4, Rating.THREE_STAR, "comantario Cookie");
         p4 = pm.reviewProduct(p4, Rating.TWO_STAR, "comantario Cookie 1");
         p4 = pm.reviewProduct(p4, Rating.FOUR_STAR, "comantario Cookie 2");
         pm.printProductReport(p4);
-
+        
         Comparator<Product> ratingSorter = (p1, p5)
                 -> p5.getRating().ordinal() - p1.getRating().ordinal();
-
+        
         Comparator<Product> priceSorter = (p1, p5)
                 -> p5.getPrice().compareTo(p1.getPrice());
-
+        
         pm.createProduct(106, "Chocolate", BigDecimal.valueOf(2.50), Rating.NOT_RATED, LocalDate.now().plusDays(3));
         pm.reviewProduct(106, Rating.THREE_STAR, "Too sweet");
         pm.reviewProduct(106, Rating.TWO_STAR, "Too sweet Cookie 1");
         pm.reviewProduct(106, Rating.FOUR_STAR, "Too sweet Cookie 2");
-        pm.printProductReport(106);
+        pm.printProductReport(42);
 //        pm.printProduct(p -> p.getPrice().floatValue() < 2, (pp1, pp2) -> pp2.getRating().ordinal() - pp1.getRating().ordinal());
 //        pm.printProduct(ratingSorter);
 //        pm.printProduct(priceSorter);
@@ -129,7 +137,7 @@ public class Shop {
 //        System.out.println(p7);
 //        System.out.println(p8);
 //        System.out.println(p9);
-        pm.getDiscounts().forEach((rating,discount)-> System.out.println(rating+"\t"+discount));     
+        pm.getDiscounts().forEach((rating, discount) -> System.out.println(rating + "\t" + discount));
     }
-
+    
 }
